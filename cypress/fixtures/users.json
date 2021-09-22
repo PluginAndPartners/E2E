@@ -1,0 +1,13 @@
+[
+  {
+    "firstName": "João",
+    "lastName": "Silva",
+    "address": "Rua batata da china",
+    "city": "São Paulo",
+    "stateAcronym": "SP",
+    "zipcode": "99999-999",
+    "phone": "11111111111",
+    "email": "joao.silva@mercadoteste.com",
+    "document": "19119119100"
+  }
+]

@@ -3,5 +3,6 @@
     "viewportHeight": 768,
     "defaultCommandTimeout": 10000,
     "chromeWebSecurity": false,
-    "productPageUrl": "https://cypress-pluginspartners.codeanyapp.com/index.php?id_product=1&id_product_attribute=1&rewrite=hummingbird-printed-t-shirt&controller=product&id_lang=2#/1-tamanho-s/8-cor-branco"
+    "storeUrl": "https://poc-cypress-pluginspartners.codeanyapp.com/tienda/",
+    "orderPageUrl": "https://poc-cypress-pluginspartners.codeanyapp.com/wp-admin/edit.php?post_type=shop_order"
 }
