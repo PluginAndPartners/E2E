@@ -17,9 +17,9 @@ export const OrderPage = {
         });
     },
 
-    checkPaymentStatusBox() {
+    checkPaymentStatusBox(title, imagePath) {
         cy.get(OrderElements.alertImage, {force: true}).should('be.visible');
-        cy.get(OrderElements.alertTitle, {force: true}).contains('recusado');
-        cy.get(OrderElements.alertImage, {force: true}).should('have.attr', 'src', 'https://poc-cypress-pluginspartners.codeanyapp.com/wp-content/plugins/woocommerce-mercadopago/includes/admin/../../assets/images/generics/circle-red-alert.png');
+        cy.get(OrderElements.alertTitle, {force: true}).contains(title);
+        cy.get(OrderElements.alertImage, {force: true}).should('have.attr', 'src', imagePath);
     },
 }

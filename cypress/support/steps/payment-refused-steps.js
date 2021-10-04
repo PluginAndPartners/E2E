@@ -13,7 +13,7 @@ When("realizo o processo de checkout com OTHE OTHE", () => {
     StorePage.accessCheckout();
     CheckoutPage.fillPersonalData();
     CheckoutPage.selectPaymentMethod();
-    CheckoutPage.fillPaymentInformation();
+    CheckoutPage.fillPaymentInformation('OTHE OTHE');
     CheckoutPage.finishCheckout();
 })
 
@@ -21,5 +21,8 @@ Then("na página do pedido devo visualizar o status de pagamento recusado", () =
     OrderPage.accessOrderPage();
     LoginPage.doLoginIfNecessary();
     OrderPage.accessLastOrder();
-    OrderPage.checkPaymentStatusBox();
+    OrderPage.checkPaymentStatusBox(
+        'recusado',
+        'https://poc-cypress-pluginspartners.codeanyapp.com/wp-content/plugins/woocommerce-mercadopago/includes/admin/../../assets/images/generics/circle-red-alert.png'
+    );
 })

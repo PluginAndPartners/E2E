@@ -10,6 +10,7 @@ export const CheckoutPage = {
             cy.get(CheckoutElements.billingForm.addressInput).type(user.address);
             cy.get(CheckoutElements.billingForm.cityInput).type(user.city);
             cy.get(CheckoutElements.billingForm.stateSelect).select(user.stateAcronym, {force: true});
+            cy.get(CheckoutElements.billingForm.zipcodeInput).type(user.zipcode, {force: true});
             cy.get(CheckoutElements.billingForm.phoneInput).type(user.phone);
             cy.get(CheckoutElements.billingForm.emailInput).type(user.email);
         });
@@ -19,18 +20,19 @@ export const CheckoutPage = {
         cy.get(CheckoutElements.paymentMethods.creditCard.radio).click({force: true});
     },
 
-    fillPaymentInformation() {
+    fillPaymentInformation(cardFullName) {
+        cy.wait(12000);
         cy.fixture('users').then(users => {
             const user = users[0];
             cy.fixture('credit-cards').then(creditCards => {
                 const masterCard = creditCards.br.master;
-                cy.fixture('payment-status').then(paymentStatus => {
-                    cy.get(CheckoutElements.paymentMethods.creditCard.numberInput).type(masterCard.number);
-                    cy.get(CheckoutElements.paymentMethods.creditCard.nameInput).type(paymentStatus.refused.othe, {force: true});
-                    cy.get(CheckoutElements.paymentMethods.creditCard.installmentsSelect).select('1');
-                    cy.get(CheckoutElements.paymentMethods.creditCard.expirationDateInput).type(masterCard.expirationDate);
-                    cy.get(CheckoutElements.paymentMethods.creditCard.cvvInput).type(masterCard.cvv);
-                    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(user.document);
+                cy.fixture('payment-status').then(() => {
+                    cy.get(CheckoutElements.paymentMethods.creditCard.numberInput).type(masterCard.number, {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.nameInput).type(cardFullName, {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.installmentsSelect).select('1', {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.expirationDateInput).type(masterCard.expirationDate, {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.cvvInput).type(masterCard.cvv, {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(user.document, {force: true});
                 });
             });
         });
@@ -40,5 +42,7 @@ export const CheckoutPage = {
 
     finishCheckout() {
         cy.get(CheckoutElements.finishButton).click();
+        cy.on('uncaught:exception', () => false);
+        cy.wait(4000);
     },
 }
