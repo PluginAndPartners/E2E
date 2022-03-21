@@ -1,4 +1,34 @@
 # E2E P&P 🔌
+
+## Criação do Comando plugins-e2e
+Precisamos pegar o caminho da pasta do projeto.
+- No seu terminal, dentro da pasta do projeto, execute o comando:
+```
+pwd
+```
+
+- Copie o resultado do comando.
+- Dentro da pasta ``lib/``, abra o arquivo ``plugins-e2e.sh``
+- Cole o caminho da pasta na variavel ``E2E_PATH``
+- No seu terminal, na raiz do projeto, execute os seguintes comandos:
+```
+cp lib/plugins-e2e.sh /usr/local/bin/.
+```
+```
+mv /usr/local/bin/plugins-e2e.sh /usr/local/bin/plugins-e2e
+```
+```
+chmod +x /usr/local/bin/plugins-e2e
+```
+
+``PRONTO``
+
+O comando já estara funcionando de qualquer lugar
+Execute:
+```
+plugins-e2e woocommerce
+```
+
 ## TODO:
 - Cenários em comum entre plataformas (Meio de pagamento)
 - Reaproveitamento de códigos/cenários entre plataformas
