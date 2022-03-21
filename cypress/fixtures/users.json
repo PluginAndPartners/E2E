@@ -1,13 +1,79 @@
-[
-  {
+{
+  "mla": {
+    "firstName": "Tiago",
+    "lastName": "Ortiz",
+    "address": "Avenida San Juan, 123",
+    "city": "Buenos Aires",
+    "stateAcronym": "B",
+    "countryAcronym": "AR",
+    "zipcode": "99999-999",
+    "phone": "011111-1111",
+    "email": "test_user_39321260@testuser.com"
+  },
+  "mlb": {
     "firstName": "João",
     "lastName": "Silva",
-    "address": "Rua batata da china",
+    "address": "Rua Vila Aires, 123",
     "city": "São Paulo",
     "stateAcronym": "SP",
+    "countryAcronym": "BR",
     "zipcode": "99999-999",
-    "phone": "11111111111",
-    "email": "joao.silva@mercadoteste.com",
-    "document": "19119119100"
+    "phone": "011111-1111",
+    "email": "test_user_45830353@testuser.com"
+  },
+  "mlc": {
+    "firstName": "Isabel",
+    "lastName": "Alvarez",
+    "address": " Calle El Jucai, 123",
+    "city": "Temuco",
+    "stateAcronym": "AR",
+    "countryAcronym": "CL",
+    "zipcode": "99999-999",
+    "phone": "011111-1111",
+    "email": "test_user_28755734@testuser.com"
+  },
+  "mco": {
+    "firstName": "Pablo",
+    "lastName": "Lopez",
+    "address": "Calle San Juan, 123",
+    "city": "Arauca",
+    "stateAcronym": "ARA",
+    "countryAcronym": "CO",
+    "zipcode": "99999-999",
+    "phone": "011111-1111",
+    "email": "test_user_34232535@testuser.com"
+  },
+  "mlm": {
+    "firstName": "Lucia",
+    "lastName": "Ramos",
+    "address": "Juarez Zs, 123",
+    "city": "Ciudad del Mexico",
+    "stateAcronym": "DF",
+    "countryAcronym": "MX ",
+    "zipcode": "99999-999",
+    "phone": "011111-1111",
+    "email": "test_user_89537482@testuser.com"
+  },
+  "mpe": {
+    "firstName": "Laura",
+    "lastName": "Navarro",
+    "address": "Calle Aviacion, 123",
+    "city": "Abancay",
+    "stateAcronym": "APU",
+    "countryAcronym": "PE",
+    "zipcode": "99999-999",
+    "phone": "011111-1111",
+    "email": "test_user_45740922@testuser.com"
+  },
+  "mlu": {
+    "firstName": "Cristian",
+    "lastName": "Morales",
+    "address": "Calle Puesto, 123",
+    "city": "Melo",
+    "stateAcronym": "CL",
+    "countryAcronym": "UY",
+    "zipcode": "99999-999",
+    "phone": "011111-1111",
+    "email": "test_user_978487@testuser.com"
   }
-]
+}

@@ -1,5 +1,26 @@
 {
-    "refused": {
-        "othe": "OTHE OTHE"
-    }
+  "approved": {
+    "apro": "APRO APRO"
+  },
+  "pending": {
+    "cont": "CONT CONT"
+  },
+  "refused": {
+    "othe": "OTHE OTHE"
+  },
+  "refusedAmount": {
+    "fund": "FUND FUND"
+  },
+  "refusedAuthorized": {
+    "call": "CALL CALL"
+  },
+  "refusedExpiration": {
+    "expi": "EXPI EXPI"
+  },
+  "refusedForm": {
+    "form": "FORM FORM"
+  },
+  "refusedSecurity": {
+    "secu": "SECU SECU"
+  }
 }

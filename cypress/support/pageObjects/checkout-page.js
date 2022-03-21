@@ -3,7 +3,7 @@ import {CheckoutElements} from '../elements/checkout-elements';
 export const CheckoutPage = {
     fillPersonalData() {
         cy.fixture('users').then(users => {
-            const user = users[0];
+            const user = users.mlb;
         
             cy.get(CheckoutElements.billingForm.firstNameInput).type(user.firstName);
             cy.get(CheckoutElements.billingForm.lastNameInput).type(user.lastName);
@@ -22,22 +22,20 @@ export const CheckoutPage = {
 
     fillPaymentInformation(cardFullName) {
         cy.wait(12000);
-        cy.fixture('users').then(users => {
-            const user = users[0];
+        cy.fixture('user-documents').then(userDocuments => {
+            const userDocument = userDocuments.mlb;
             cy.fixture('credit-cards').then(creditCards => {
-                const masterCard = creditCards.br.master;
+                const masterCard = creditCards.mlb.master;
                 cy.fixture('payment-status').then(() => {
                     cy.get(CheckoutElements.paymentMethods.creditCard.numberInput).type(masterCard.number, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.nameInput).type(cardFullName, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.installmentsSelect).select('1', {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.expirationDateInput).type(masterCard.expirationDate, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.cvvInput).type(masterCard.cvv, {force: true});
-                    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(user.document, {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(userDocument.cpf, {force: true});
                 });
             });
         });
-
-        
     },
 
     finishCheckout() {
