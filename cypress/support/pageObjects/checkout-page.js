@@ -1,4 +1,5 @@
 import {CheckoutElements} from '../elements/checkout-elements';
+import { IframePage } from './iframe-page';
 
 export const CheckoutPage = {
     fillPersonalData() {
@@ -21,18 +22,22 @@ export const CheckoutPage = {
     },
 
     fillPaymentInformation(cardFullName) {
-        cy.wait(12000);
+        cy.wait(4000);
         cy.fixture('user-documents').then(userDocuments => {
             const userDocument = userDocuments.mlb;
             cy.fixture('credit-cards').then(creditCards => {
                 const masterCard = creditCards.mlb.master;
                 cy.fixture('payment-status').then(() => {
-                    cy.get(CheckoutElements.paymentMethods.creditCard.numberInput).type(masterCard.number, {force: true});
+                    IframePage.getIframeElementName('iframe[name=cardNumber]', '#cardNumber').type(masterCard.number, {force: true});
+                    IframePage.getIframeElementName('iframe[name=securityCode]', '#securityCode').type(masterCard.cvv, {force: true});
+                    IframePage.getIframeElementName('iframe[name=expirationDate]', '#expirationDate').type(masterCard.expirationDate, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.nameInput).type(cardFullName, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.installmentsSelect).select('1', {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.expirationDateInput).type(masterCard.expirationDate, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.cvvInput).type(masterCard.cvv, {force: true});
                     cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(userDocument.cpf, {force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.installmentsSelect).click({force: true});
+                    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(user.document, {force: true});
                 });
             });
         });

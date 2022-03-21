@@ -3,6 +3,6 @@
     "viewportHeight": 768,
     "defaultCommandTimeout": 10000,
     "chromeWebSecurity": false,
-    "storeUrl": "https://poc-cypress-pluginspartners.codeanyapp.com/tienda/",
-    "orderPageUrl": "https://poc-cypress-pluginspartners.codeanyapp.com/wp-admin/edit.php?post_type=shop_order"
+    "storeUrl": "https://ideal-cho-pluginspartners.codeanyapp.com/tienda/",
+    "orderPageUrl": "https://ideal-cho-pluginspartners.codeanyapp.com/wp-admin/edit.php?post_type=shop_order"
 }

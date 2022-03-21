@@ -12,12 +12,12 @@ export const CheckoutElements = {
     paymentMethods: {
         creditCard: {
             radio: '#payment_method_woo-mercado-pago-custom',
-            numberInput: '#mp-card-number',
-            nameInput: '#mp-card-holder-name',
-            expirationDateInput: '#mp-card-expiration-date',
-            cvvInput: '#mp-security-code',
-            installmentsSelect: '#mp-installments',
-            documentInput: '#docNumber',
+            numberInput: '#cardNumber',
+            nameInput: '#form-checkout__cardholderName',
+            expirationDateInput: '#expirationDate',
+            cvvInput: '#securityCode',
+            installmentsSelect: '#installment-1',
+            documentInput: '[data-checkout=docNumber]',
         }
     },
     finishButton: '#place_order',
