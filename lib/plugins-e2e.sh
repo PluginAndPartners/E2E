@@ -1,8 +1,8 @@
 #!/bin/bash
 
-E2E_PATH="/Users/mgouveia/Projects/E2E/"
+E2E_PATH="/Users/mgouveia/Projects/E2E"
 PLATAFORM=$1
-CYPRESS_PATH="${E2E_PATH}cypress/support/"
+CYPRESS_PATH="${E2E_PATH}/cypress/support/"
 
 if [ ! -z "$1" ]; then
 
