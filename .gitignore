@@ -1,2 +1,4 @@
 node_modules
 cypress/support
+cypress/fixtures.out/
+cypress.env.json

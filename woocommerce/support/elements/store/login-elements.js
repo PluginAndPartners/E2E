@@ -1,4 +1,3 @@
-
 export const LoginElements = {
     usernameInput: '#user_login',
     passwordInput: '#user_pass',

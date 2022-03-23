@@ -18,6 +18,14 @@ export const CheckoutElements = {
             cvvInput: '#securityCode',
             installmentsSelect: '#installment-1',
             documentInput: '[data-checkout=docNumber]',
+        },
+        checkoutPro: {
+            radio: '#payment_method_woo-mercado-pago-basic',
+        },
+        checkoutTicket: {
+            radio: '#payment_method_woo-mercado-pago-ticket',
+            documentInput: '[name=mercadopago_ticket[docType]]',
+            documentSelect: ''
         }
     },
     finishButton: '#place_order',
