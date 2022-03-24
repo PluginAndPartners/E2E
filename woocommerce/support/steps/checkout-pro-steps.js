@@ -4,7 +4,7 @@ import {CheckoutProPage} from '../pageObjects/checkout/pro-page'
 import {StoreOrderPage} from '../pageObjects/store/order-page'
 import {StoreLoginPage} from '../pageObjects/store/login-page'
 import {MpCheckoutPage} from '../pageObjects/mp/checkout-page'
-import {MpOrderConfirmation} from '../pageObjects/mp/order-confirmation-page' 
+import {MpOrderConfirmationPage} from '../pageObjects/mp/order-confirmation-page'
 import {StoreOrderConfirmationPage} from '../pageObjects/store/order-confirmation-page'
 
 Given("que eu tenha um produto no carrinho", () => {
@@ -39,7 +39,7 @@ And("deve concluir o fluxo de pagamento", () => {
 
 And("ao concluir o fluxo de pagamento, deve ser redirecionado de volta a loja, na tela de pedido recebido", () => {
     MpCheckoutPage.validateUrl('/congrats');
-    MpOrderConfirmation.backToStore();
+    MpOrderConfirmationPage.backToStore();
     StoreOrderConfirmationPage.validateUrl('/order-received');
 })
 

@@ -1,4 +1,4 @@
-import {MpOrderConfirmationElements} from '../../elements/mp/order-confirmation-elements';
+import {MpOrderConfirmationElements} from './../../elements/mp/order-confirmation-elements';
 
 export const MpOrderConfirmationPage = {
     backToStore() {

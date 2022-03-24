@@ -1,4 +1,4 @@
-import {MpCheckoutElements} from '../../elements/MpCheckoutElements';
+import {MpCheckoutElements} from './../../elements/mp/checkout-elements';
 
 export const MpCheckoutPage = {
     validateUrl(url) {

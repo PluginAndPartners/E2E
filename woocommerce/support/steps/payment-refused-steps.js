@@ -14,7 +14,7 @@ When("realizo o processo de checkout com OTHE OTHE", () => {
     StorePage.accessCheckout();
     CheckoutPage.fillPersonalData('mlb');
     CheckoutCustomPage.selectPaymentMethod();
-    CheckoutCustomPage.fillPaymentInformation('OTHE OTHE');
+    CheckoutCustomPage.fillPaymentInformation('OTHE OTHE', 'mlb');
     CheckoutPage.finishCheckout();
 })
 

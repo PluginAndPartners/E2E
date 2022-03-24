@@ -7,8 +7,7 @@
     "stateAcronym": "B",
     "countryAcronym": "AR",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_39321260@testuser.com"
+    "phone": "011111-1111"
   },
   "mlb": {
     "firstName": "João",
@@ -18,8 +17,7 @@
     "stateAcronym": "SP",
     "countryAcronym": "BR",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_45830353@testuser.com"
+    "phone": "011111-1111"
   },
   "mlc": {
     "firstName": "Isabel",
@@ -29,8 +27,7 @@
     "stateAcronym": "AR",
     "countryAcronym": "CL",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_28755734@testuser.com"
+    "phone": "011111-1111"
   },
   "mco": {
     "firstName": "Pablo",
@@ -40,8 +37,7 @@
     "stateAcronym": "ARA",
     "countryAcronym": "CO",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_34232535@testuser.com"
+    "phone": "011111-1111"
   },
   "mlm": {
     "firstName": "Lucia",
@@ -51,8 +47,7 @@
     "stateAcronym": "DF",
     "countryAcronym": "MX ",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_89537482@testuser.com"
+    "phone": "011111-1111"
   },
   "mpe": {
     "firstName": "Laura",
@@ -62,8 +57,7 @@
     "stateAcronym": "APU",
     "countryAcronym": "PE",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_45740922@testuser.com"
+    "phone": "011111-1111"
   },
   "mlu": {
     "firstName": "Cristian",
@@ -73,7 +67,6 @@
     "stateAcronym": "CL",
     "countryAcronym": "UY",
     "zipcode": "99999-999",
-    "phone": "011111-1111",
-    "email": "test_user_978487@testuser.com"
+    "phone": "011111-1111"
   }
 }
