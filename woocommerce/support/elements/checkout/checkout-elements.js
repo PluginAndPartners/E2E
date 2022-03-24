@@ -22,6 +22,9 @@ export const CheckoutElements = {
         checkoutPro: {
             radio: '#payment_method_woo-mercado-pago-basic',
         },
+        checkoutPix: {
+            radio: '#payment_method_woo-mercado-pago-pix',
+        },
         checkoutTicket: {
             radio: '#payment_method_woo-mercado-pago-ticket',
             documentInput: '[name=mercadopago_ticket[docType]]',
