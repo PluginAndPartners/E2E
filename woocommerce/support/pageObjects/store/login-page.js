@@ -1,6 +1,6 @@
-import {LoginElements} from '../elements/login-elements';
+import {LoginElements} from './../../elements/store/login-elements';
 
-export const LoginPage = {
+export const StoreLoginPage = {
     doLoginIfNecessary() {
         cy.location('pathname').then(url => {
             if (url.includes('wp-login.php')) {

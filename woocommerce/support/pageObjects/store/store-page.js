@@ -1,4 +1,4 @@
-import {StoreElements} from '../elements/store-elements';
+import {StoreElements} from '../../elements/store/store-elements';
 
 const storeUrl = Cypress.config("storeUrl");
 

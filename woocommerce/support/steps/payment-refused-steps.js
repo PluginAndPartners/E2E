@@ -1,7 +1,8 @@
-import {StorePage} from '../pageObjects/store-page'
-import {CheckoutPage} from '../pageObjects/checkout-page'
-import {OrderPage} from '../pageObjects/order-page'
-import {LoginPage} from '../pageObjects/login-page'
+import {StorePage} from '../pageObjects/store/store-page'
+import {CheckoutPage} from '../pageObjects/checkout/checkout-page'
+import {CheckoutCustomPage} from '../pageObjects/checkout/custom-page'
+import {StoreOrderPage} from '../pageObjects/store/order-page'
+import {StoreLoginPage} from '../pageObjects/store/login-page'
 
 Given("um item no carrinho de compras", () => {
     StorePage.accessStore();
@@ -11,18 +12,15 @@ Given("um item no carrinho de compras", () => {
 When("realizo o processo de checkout com OTHE OTHE", () => {
     StorePage.accessCart();
     StorePage.accessCheckout();
-    CheckoutPage.fillPersonalData();
-    CheckoutPage.selectPaymentMethod();
-    CheckoutPage.fillPaymentInformation('OTHE OTHE');
+    CheckoutPage.fillPersonalData('mlb');
+    CheckoutCustomPage.selectPaymentMethod();
+    CheckoutCustomPage.fillPaymentInformation('OTHE OTHE', 'mlb');
     CheckoutPage.finishCheckout();
 })
 
 Then("na página do pedido devo visualizar o status de pagamento recusado", () => {
-    OrderPage.accessOrderPage();
-    LoginPage.doLoginIfNecessary();
-    OrderPage.accessLastOrder();
-    OrderPage.checkPaymentStatusBox(
-        'recusado',
-        'https://poc-cypress-pluginspartners.codeanyapp.com/wp-content/plugins/woocommerce-mercadopago/includes/admin/../../assets/images/generics/circle-red-alert.png'
-    );
+    StoreOrderPage.accessOrderPage();
+    StoreLoginPage.doLoginIfNecessary();
+    StoreOrderPage.accessLastOrder();
+    StoreOrderPage.checkPaymentStatusBox('recusado');
 })

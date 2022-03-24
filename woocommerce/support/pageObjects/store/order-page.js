@@ -1,8 +1,8 @@
-import {OrderElements} from '../elements/order-elements';
+import {OrderElements} from './../../elements/store/order-elements';
 
 const orderPage = Cypress.config("orderPageUrl");
 
-export const OrderPage = {
+export const StoreOrderPage = {
     accessOrderPage() {
         cy.visit(orderPage)
     },
@@ -17,9 +17,8 @@ export const OrderPage = {
         });
     },
 
-    checkPaymentStatusBox(title, imagePath) {
+    checkPaymentStatusBox(title) {
         cy.get(OrderElements.alertImage, {force: true}).should('be.visible');
         cy.get(OrderElements.alertTitle, {force: true}).contains(title);
-        cy.get(OrderElements.alertImage, {force: true}).should('have.attr', 'src', imagePath);
     },
 }
