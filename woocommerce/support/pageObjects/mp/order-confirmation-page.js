@@ -2,6 +2,6 @@ import {MpOrderConfirmationElements} from './../../elements/mp/order-confirmatio
 
 export const MpOrderConfirmationPage = {
     backToStore() {
-        cy.get(MpOrderConfirmationElements.backToStoreButton).click();
+        cy.get(MpOrderConfirmationElements.backToStoreButton).click({force: true});
     },
 }

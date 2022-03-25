@@ -14,7 +14,7 @@ export const StoreOrderPage = {
                     cy.get(lastOrderLink).click();
                 });
             });
-        });
+        }).should('exist');
     },
 
     checkPaymentStatusBox(title) {
