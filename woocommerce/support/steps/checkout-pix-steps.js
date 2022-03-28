@@ -23,7 +23,7 @@ And("que cliquei na opção de pagamento com o checkout Pix", () => {
     CheckoutPixPage.selectPaymentMethod();
 })
 
-And("cliquei em finalizar a compra", () => {
+When("cliquei em finalizar a compra", () => {
     CheckoutPage.finishCheckout();
 })
 
@@ -35,7 +35,7 @@ And("devo visualizar uma seção com o QR Code e o código do Pix", () => {
     CheckoutPixPage.getQRCode();
 })
 
-And("na página do pedido eu devo visualizar o status de pagamento pendente", () => {
+And("na página do pedido eu devo visualizar o status de pagamento pendente do pix", () => {
     StoreOrderPage.accessOrderPage();
     StoreLoginPage.doLoginIfNecessary();
     StoreOrderPage.accessLastOrder();
