@@ -62,8 +62,8 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
     When eu preencher incorretamente o cpf como número do documento
     And selecionar a opção bolbradesco
     And clicar em finalizar a compra
-    Then o campo de documento deve exibir a mensagem de formato inválido
-    And a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido
+    Then o campo de documento deve exibir a mensagem 'Número de documento inválido'
+    And a página de checkout deve exibir um alerta vermelho sinalizando o erro
 
   Scenario: Realizando um pedido sem sucesso usando o documento de CNPJ inválido
     Given que eu tenha um produto no carrinho
@@ -73,8 +73,8 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
     When eu preencher incorretamente o cnpj como número do documento
     And selecionar a opção bolbradesco
     And clicar em finalizar a compra
-    Then o campo de documento deve exibir a mensagem de formato inválido
-    And a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido
+    Then o campo de documento deve exibir a mensagem 'Número de documento inválido'
+    And a página de checkout deve exibir um alerta vermelho sinalizando o erro
 
   Scenario: Realizando um pedido sem sucesso usando o documento de CPF vazio
     Given que eu tenha um produto no carrinho
@@ -84,8 +84,8 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
     When eu não preencher o cpf como número do documento
     And selecionar a opção bolbradesco
     And clicar em finalizar a compra
-    Then o campo de documento deve exibir a mensagem de formato inválido
-    And a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido
+    Then o campo de documento deve exibir a mensagem 'Número de documento inválido'
+    And a página de checkout deve exibir um alerta vermelho sinalizando o erro
 
   Scenario: Realizando um pedido sem sucesso usando o documento de CNPJ vazio
     Given que eu tenha um produto no carrinho
@@ -95,8 +95,8 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
     When eu não preencher o cnpj como número do documento
     And selecionar a opção bolbradesco
     And clicar em finalizar a compra
-    Then o campo de documento deve exibir a mensagem de formato inválido
-    And a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido
+    Then o campo de documento deve exibir a mensagem 'Número de documento inválido'
+    And a página de checkout deve exibir um alerta vermelho sinalizando o erro
 
   Scenario: Realizando um pedido sem sucesso sem selecionar o meio de pagamento
     Given que eu tenha um produto no carrinho
@@ -105,4 +105,4 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
     And que eu clique na opção de pagamento com o checkout ticket
     When eu preencher corretamente o cpf como número do documento
     And clicar em finalizar a compra
-    Then a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido
+    Then a página de checkout deve exibir um alerta vermelho sinalizando o erro

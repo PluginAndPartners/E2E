@@ -7,6 +7,7 @@ export const CheckoutPage = {
             let envs = Cypress.env(site);
             cy.get(CheckoutElements.billingForm.firstNameInput).type(user.firstName);
             cy.get(CheckoutElements.billingForm.lastNameInput).type(user.lastName);
+            cy.get(CheckoutElements.billingForm.countrySelect).select(user.countryAcronym, {force: true});            
             cy.get(CheckoutElements.billingForm.addressInput).type(user.address);
             cy.get(CheckoutElements.billingForm.cityInput).type(user.city);
             cy.get(CheckoutElements.billingForm.stateSelect).select(user.stateAcronym, {force: true});

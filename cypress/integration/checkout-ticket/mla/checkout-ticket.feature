@@ -35,4 +35,4 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
     And que eu preencha corretamente os detalhes de faturamento
     And que eu clique na opção de pagamento com o checkout ticket
     When clicar em finalizar a compra
-    Then a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido
+    Then a página de checkout deve exibir um alerta vermelho sinalizando o erro

@@ -2,6 +2,7 @@ export const CheckoutElements = {
   billingForm: {
     firstNameInput: "#billing_first_name",
     lastNameInput: "#billing_last_name",
+    countrySelect: "#billing_country",
     addressInput: "#billing_address_1",
     cityInput: "#billing_city",
     stateSelect: "select#billing_state.state_select.select2-hidden-accessible",
@@ -31,6 +32,7 @@ export const CheckoutElements = {
       paymentMethodsContainerTitle: "[data-cy=checkout-ticket-text]",
       paymentMethodsContainer: "[data-cy=input-table-container]",
       paymentMethodsList: "[data-cy=input-table-list]",
+      paymentMethodsText: ".mp-input-table-row-text-image",
       paymentMethodsRadio: "[data-cy=input-radio]",
       helperMessage: "[data-cy=helper-message]",
       testModeContainer: "[data-cy=test-mode-card]",

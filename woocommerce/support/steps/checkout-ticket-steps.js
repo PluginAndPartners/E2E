@@ -48,9 +48,7 @@ And("que eu clique na opção de pagamento com o checkout ticket", () => {
   CheckoutTicketPage.selectPaymentMethod();
 });
 
-When(
-  "eu preencher corretamente o {word} como número do documento",
-  (document) => {
+When("eu preencher corretamente o {word} como número do documento", (document) => {
     CheckoutTicketPage.fillDocument(document, "mlb");
   }
 );
@@ -72,24 +70,25 @@ And("devo visualizar uma seção com a guia de pagamento em formato PDF", () => 
   StoreOrderConfirmationPage.checkIframe();
 });
 
-When(
-  "eu preencher incorretamente o {word} como número do documento",
-  (document) => {
+When("eu preencher incorretamente o {word} como número do documento", (document) => {
     CheckoutTicketPage.fillDocument(document, "mlb", "123%$#.");
   }
 );
 
-Then("o campo de documento deve exibir a mensagem de formato inválido", () => {
+Then("o campo de documento deve exibir a mensagem {string}", (message) => {
   CheckoutTicketPage.checkElement("helperMessage");
   CheckoutTicketPage.checkTranslation(
     "helperMessage",
-    "Número de documento inválido"
+    message
   );
 });
 
-And(
-  "a página de checkout deve exibir um alerta vermelho com a mensagem de documento inválido",
-  () => {
+And("a página de checkout deve exibir um alerta vermelho sinalizando o erro", () => {
+    CheckoutTicketPage.checkElement("wooNotice");
+  }
+);
+
+Then("a página de checkout deve exibir um alerta vermelho sinalizando o erro", () => {
     CheckoutTicketPage.checkElement("wooNotice");
   }
 );

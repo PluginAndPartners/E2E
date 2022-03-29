@@ -32,7 +32,11 @@ export const CheckoutTicketPage = {
       cy.get(CheckoutElements.paymentMethods.checkoutTicket.documentSelect)
         .last()
         .find("option")
-        .should("have.length", documentsTypes.length);
+        .should("have.length", documentsTypes.length)
+        .then((options) => {
+          let option = [...options].map((o) => o.value);
+          expect(option).to.deep.eq(documentsTypes);
+        });
     });
   },
 
@@ -42,8 +46,12 @@ export const CheckoutTicketPage = {
 
       cy.get(CheckoutElements.paymentMethods.checkoutTicket.paymentMethodsList)
         .last()
-        .find(".mp-input-table-item")
-        .should("have.length", paymentMethodsTypes.length);
+        .find(CheckoutElements.paymentMethods.checkoutTicket.paymentMethodsText)
+        .should("have.length", paymentMethodsTypes.length)
+        .then((items) => {
+          let item = [...items].map((o) => o.innerText);
+          expect(item).to.deep.eq(paymentMethodsTypes);
+        });
     });
   },
 
