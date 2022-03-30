@@ -20,8 +20,27 @@ export const CheckoutElements = {
       installmentsSelect: "#installment-1",
       documentInput: "[data-checkout=docNumber]",
     },
-    checkoutPro: {
-      radio: "#payment_method_woo-mercado-pago-basic",
+    paymentMethods: {
+        creditCard: {
+            radio: '#payment_method_woo-mercado-pago-custom',
+            numberInput: '#cardNumber',
+            nameInput: '#form-checkout__cardholderName',
+            expirationDateInput: '#expirationDate',
+            cvvInput: '#securityCode',
+            installmentsSelect: '#installment-1',
+            documentInput: '[data-checkout=docNumber]',
+        },
+        checkoutPro: {
+            radio: '#payment_method_woo-mercado-pago-basic',
+        },
+        checkoutPix: {
+            radio: '#payment_method_woo-mercado-pago-pix',
+        },
+        checkoutTicket: {
+            radio: '#payment_method_woo-mercado-pago-ticket',
+            documentInput: '[name=mercadopago_ticket[docType]]',
+            documentSelect: ''
+        }
     },
     checkoutTicket: {
       radio: "#payment_method_woo-mercado-pago-ticket",
