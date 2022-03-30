@@ -106,5 +106,6 @@ To control the platform and plugin pages we use patter [Page Objects](https://ma
 
 and finally, the execution of the test itself must be in plugin-name/support/steps folder.
 
-remember:
-<img src="https://files.slack.com/files-pri/T02AJUT0S-F039D9XREFN/bugs.jpeg" alt="bugs" style="height: 100px; width:100px;"/>
+### Bugs have feelings
+
+![Foo](https://cafecomteste.files.wordpress.com/2018/02/bugs.jpg)
