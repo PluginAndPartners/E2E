@@ -17,34 +17,17 @@ export const CheckoutElements = {
       nameInput: "#form-checkout__cardholderName",
       expirationDateInput: "#expirationDate",
       cvvInput: "#securityCode",
-      installmentsSelect: "#installment-1",
+      installmentsSelect: "[data-cy=input-table-list]",
+      firstInstallment: "#installment-1",
       documentInput: "[data-checkout=docNumber]",
+      cardNumberDiv: "#form-checkout__cardNumber-container",
+      cvvDigitsInformation: "#mp-security-code-info",
     },
-    paymentMethods: {
-        creditCard: {
-            radio: '#payment_method_woo-mercado-pago-custom',
-            numberInput: '#cardNumber',
-            nameInput: '#form-checkout__cardholderName',
-            expirationDateInput: '#expirationDate',
-            cvvInput: '#securityCode',
-            installmentsSelect: '[data-cy=input-table-list]',
-            firstInstallment: '#installment-1',
-            documentInput: '[data-checkout=docNumber]',
-            cardNumberDiv: '#form-checkout__cardNumber-container',
-            cvvDigitsInformation: '#mp-security-code-info',
-            
-        },
-        checkoutPro: {
-            radio: '#payment_method_woo-mercado-pago-basic',
-        },
-        checkoutPix: {
-            radio: '#payment_method_woo-mercado-pago-pix',
-        },
-        checkoutTicket: {
-            radio: '#payment_method_woo-mercado-pago-ticket',
-            documentInput: '[name=mercadopago_ticket[docType]]',
-            documentSelect: ''
-        }
+    checkoutPro: {
+      radio: "#payment_method_woo-mercado-pago-basic",
+    },
+    checkoutPix: {
+      radio: "#payment_method_woo-mercado-pago-pix",
     },
     checkoutTicket: {
       radio: "#payment_method_woo-mercado-pago-ticket",
