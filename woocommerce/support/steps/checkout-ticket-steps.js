@@ -13,34 +13,31 @@ And("que eu esteja na página de checkout", () => {
   StorePage.accessCheckout();
 });
 
-And("que eu preencha corretamente os detalhes de faturamento", () => {
-  CheckoutPage.fillPersonalData("mlb");
+And("que eu preencha corretamente os detalhes de faturamento com dados {word}", (site) => {
+  CheckoutPage.fillPersonalData(site);
 });
 
 When("eu clicar na opção de pagamento com o checkout ticket", () => {
   CheckoutTicketPage.selectPaymentMethod();
 });
 
-Then("exibido um campo de documento", () => {
+Then("exibido um campo de documento com o título {string} que contém os dados {word}", (title, site) => {
   CheckoutTicketPage.checkElement("documentInputContainer");
-  CheckoutTicketPage.checkDocumentsValues("mlb");
-  CheckoutTicketPage.checkTranslation("documentTitle", "Documento do titular*");
+  CheckoutTicketPage.checkDocumentsValues(site);
+  CheckoutTicketPage.checkTranslation("documentTitle", title);
 });
 
-And("exibido uma tabela com opções de pagamento", () => {
+And("exibido uma tabela com o título {string} que contém opções de pagamento com dados {word}", (title, site) => {
   CheckoutTicketPage.checkElement("paymentMethodsContainer");
-  CheckoutTicketPage.checkPaymentMethodsValues("mlb");
-  CheckoutTicketPage.checkTranslation(
-    "paymentMethodsContainerTitle",
-    "Selecione onde você quer pagar"
-  );
+  CheckoutTicketPage.checkPaymentMethodsValues(site);
+  CheckoutTicketPage.checkTranslation("paymentMethodsContainerTitle", title);
 });
 
-And("exibido a mensagem de termos e condições", () => {
+And("exibido a mensagem {string}", (termsAndConditionsText) => {
   CheckoutTicketPage.checkElement("termsAndConditions");
   CheckoutTicketPage.checkTranslation(
     "termsAndConditions",
-    "Ao continuar, você concorda com nossosTermos e condições"
+    termsAndConditionsText
   );
 });
 
@@ -48,10 +45,9 @@ And("que eu clique na opção de pagamento com o checkout ticket", () => {
   CheckoutTicketPage.selectPaymentMethod();
 });
 
-When("eu preencher corretamente o {word} como número do documento", (document) => {
-    CheckoutTicketPage.fillDocument(document, "mlb");
-  }
-);
+When("eu preencher corretamente o {word} como número do documento de {word}", (document, site) => {
+  CheckoutTicketPage.fillDocument(document, site);
+});
 
 And("selecionar a opção {word}", (paymentMethodId) => {
   CheckoutTicketPage.selectPaymentMethodOption(paymentMethodId);
@@ -70,29 +66,23 @@ And("devo visualizar uma seção com a guia de pagamento em formato PDF", () => 
   StoreOrderConfirmationPage.checkIframe();
 });
 
-When("eu preencher incorretamente o {word} como número do documento", (document) => {
-    CheckoutTicketPage.fillDocument(document, "mlb", "123%$#.");
-  }
-);
+When("eu preencher incorretamente o {word} como número do documento de {word}", (document, site) => {
+  CheckoutTicketPage.fillDocument(document, site, "123%$#.");
+});
 
 Then("o campo de documento deve exibir a mensagem {string}", (message) => {
   CheckoutTicketPage.checkElement("helperMessage");
-  CheckoutTicketPage.checkTranslation(
-    "helperMessage",
-    message
-  );
+  CheckoutTicketPage.checkTranslation("helperMessage", message);
 });
 
 And("a página de checkout deve exibir um alerta vermelho sinalizando o erro", () => {
-    CheckoutTicketPage.checkElement("wooNotice");
-  }
-);
+  CheckoutTicketPage.checkElement("wooNotice");
+});
 
 Then("a página de checkout deve exibir um alerta vermelho sinalizando o erro", () => {
-    CheckoutTicketPage.checkElement("wooNotice");
-  }
-);
+  CheckoutTicketPage.checkElement("wooNotice");
+});
 
-When("eu não preencher o {word} como número do documento", (document) => {
-  CheckoutTicketPage.fillDocument(document, "mlb", " ");
+When("eu não preencher o {word} como número do documento de {word}", (document, site) => {
+  CheckoutTicketPage.fillDocument(document, site, " ");
 });
