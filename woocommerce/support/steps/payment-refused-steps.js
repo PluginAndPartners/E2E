@@ -2,7 +2,7 @@ import {StorePage} from '../pageObjects/store/store-page'
 import {CheckoutPage} from '../pageObjects/checkout/checkout-page'
 import {CheckoutCustomPage} from '../pageObjects/checkout/custom-page'
 import {StoreOrderPage} from '../pageObjects/store/order-page'
-import {StoreLoginPage} from '../pageObjects/store/login-page'
+import {StoreOrderConfirmationPage} from '../pageObjects/store/order-confirmation-page'
 
 Given("um item no carrinho de compras", () => {
     StorePage.accessStore();
@@ -18,9 +18,6 @@ When("realizo o processo de checkout com OTHE OTHE", () => {
     CheckoutPage.finishCheckout();
 })
 
-Then("na página do pedido devo visualizar o status de pagamento recusado", () => {
-    StoreOrderPage.accessOrderPage();
-    StoreLoginPage.doLoginIfNecessary();
-    StoreOrderPage.accessLastOrder();
-    StoreOrderPage.checkPaymentStatusBox('recusado');
+Then("na página do pedido devo visualizar uma mensagem dizendo que o pagamento foi recusado e deve ser feito uma retentativa", () => {
+    StoreOrderConfirmationPage.errorPaymentMessage('Seu pagamento foi rejeitado. Você pode tentar novamente.');
 })

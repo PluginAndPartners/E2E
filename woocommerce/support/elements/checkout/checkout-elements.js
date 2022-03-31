@@ -16,8 +16,12 @@ export const CheckoutElements = {
             nameInput: '#form-checkout__cardholderName',
             expirationDateInput: '#expirationDate',
             cvvInput: '#securityCode',
-            installmentsSelect: '#installment-1',
+            installmentsSelect: '[data-cy=input-table-list]',
+            firstInstallment: '#installment-1',
             documentInput: '[data-checkout=docNumber]',
+            cardNumberDiv: '#form-checkout__cardNumber-container',
+            cvvDigitsInformation: '#mp-security-code-info',
+            
         },
         checkoutPro: {
             radio: '#payment_method_woo-mercado-pago-basic',
