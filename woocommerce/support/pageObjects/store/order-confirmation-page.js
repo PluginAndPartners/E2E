@@ -13,7 +13,7 @@ export const StoreOrderConfirmationPage = {
   },
 
   checkIframe() {
-    IframePage.getIframeElementName("iframe", "iframeErrorMessage").should(
+    IframePage.getIframeElementName(OrderConfirmationElements.paymentMethods.checkoutTicket.iframe, OrderConfirmationElements.paymentMethods.checkoutTicket.iframeErrorMessage).should(
       "not.exist"
     );
   },
