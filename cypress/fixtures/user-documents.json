@@ -1,0 +1,9 @@
+{
+  "mla": ["DNI", "CI", "LC", "LE", "OTRO"],
+  "mlb": ["CPF", "CNPJ"],
+  "mlc": ["RUT", "OTRO"],
+  "mco": ["CC", "CE", "NIT", "OTRO"],
+  "mlm": [],
+  "mpe": ["DNI", "CE", "RUC", "OTRO"],
+  "mlu": ["CI", "OTRO"]
+}
