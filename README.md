@@ -65,6 +65,16 @@ We use Cypress.env to handle fixtures that have sensitive data (like credit card
       "email": "some@email.com",
       "password": "somePass"
     },
+    "store": {
+      "testCredentials": {
+        "publicKey": "test public key",
+        "accessToken": "test access token"
+      },
+      "prodCredentials": {
+        "publicKey": "prod public key",
+        "accessToken": "prod access token"
+      }
+    },
     "document": {
       "cpf": "some doc number",
       "cnpj": "some doc number"

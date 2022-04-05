@@ -2,6 +2,32 @@ import { StorePage } from "./../pageObjects/store/store-page";
 import { CheckoutPage } from "./../pageObjects/checkout/checkout-page";
 import { CheckoutTicketPage } from "./../pageObjects/checkout/ticket-page";
 import { StoreOrderConfirmationPage } from "./../pageObjects/store/order-confirmation-page";
+import { StoreLoginPage } from "./../pageObjects/store/login-page"
+import { StorePluginPage } from "./../pageObjects/store/plugin-page";
+import { ConfigurationPage } from "./../pageObjects/store/configuration-page";
+
+var site;
+
+Given("a loja esteja configurada com o site {word} para testes de ticket", (siteId) => {
+  site = siteId;
+  StorePluginPage.accessPluginPage();
+  StoreLoginPage.doLoginIfNecessary();
+  StorePluginPage.createIntegration(site);
+});
+
+And("esteja em modo {word}", (mode) => {
+  StorePluginPage.changeStoreMode(mode);
+});
+
+Then("o idioma deve ser configurado para {string}", (language) => {
+  ConfigurationPage.accessConfigurationPage("wordpress");
+  ConfigurationPage.setStoreLanguage(language);
+});
+
+And("a moeda de operação da loja deve ser {string}", (currency) => {
+  ConfigurationPage.accessConfigurationPage("woocommerce");
+  ConfigurationPage.setStoreCurrency(currency);
+});
 
 Given("que eu tenha um produto no carrinho", () => {
   StorePage.accessStore();
@@ -13,7 +39,7 @@ And("que eu esteja na página de checkout", () => {
   StorePage.accessCheckout();
 });
 
-And("que eu preencha corretamente os detalhes de faturamento com dados {word}", (site) => {
+And("que eu preencha corretamente os detalhes de faturamento", () => {
   CheckoutPage.fillPersonalData(site);
 });
 
@@ -21,13 +47,13 @@ When("eu clicar na opção de pagamento com o checkout ticket", () => {
   CheckoutTicketPage.selectPaymentMethod();
 });
 
-Then("exibido um campo de documento com o título {string} que contém os dados {word}", (title, site) => {
+Then("exibido um campo de documento com o título {string}", (title) => {
   CheckoutTicketPage.checkElement("documentInputContainer");
   CheckoutTicketPage.checkDocumentsValues(site);
   CheckoutTicketPage.checkTranslation("documentTitle", title);
 });
 
-And("exibido uma tabela com o título {string} que contém opções de pagamento com dados {word}", (title, site) => {
+And("exibido uma tabela com o título {string}", (title) => {
   CheckoutTicketPage.checkElement("paymentMethodsContainer");
   CheckoutTicketPage.checkPaymentMethodsValues(site);
   CheckoutTicketPage.checkTranslation("paymentMethodsContainerTitle", title);
@@ -45,7 +71,7 @@ And("que eu clique na opção de pagamento com o checkout ticket", () => {
   CheckoutTicketPage.selectPaymentMethod();
 });
 
-When("eu preencher corretamente o {word} como número do documento de {word}", (document, site) => {
+When("eu preencher corretamente o {word} como número do documento", (document) => {
   CheckoutTicketPage.fillDocument(document, site);
 });
 
@@ -66,7 +92,7 @@ And("devo visualizar uma seção com a guia de pagamento em formato PDF", () => 
   StoreOrderConfirmationPage.checkIframe();
 });
 
-When("eu preencher incorretamente o {word} como número do documento de {word}", (document, site) => {
+When("eu preencher incorretamente o {word} como número do documento", (document) => {
   CheckoutTicketPage.fillDocument(document, site, "123%$#.");
 });
 
@@ -83,6 +109,6 @@ Then("a página de checkout deve exibir um alerta vermelho sinalizando o erro", 
   CheckoutTicketPage.checkElement("wooNotice");
 });
 
-When("eu não preencher o {word} como número do documento de {word}", (document, site) => {
+When("eu não preencher o {word} como número do documento", (document) => {
   CheckoutTicketPage.fillDocument(document, site, " ");
 });
