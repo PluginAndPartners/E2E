@@ -24,10 +24,10 @@ export const CheckoutElements = {
       cvvDigitsInformation: "#mp-security-code-info",
     },
     checkoutPro: {
-      radio: "#payment_method_woo-mercado-pago-basic",
+        radio: '#payment_method_woo-mercado-pago-basic',
     },
     checkoutPix: {
-      radio: "#payment_method_woo-mercado-pago-pix",
+        radio: '#payment_method_woo-mercado-pago-pix',
     },
     checkoutTicket: {
       radio: "#payment_method_woo-mercado-pago-ticket",

@@ -6,8 +6,10 @@ export const StoreOrderConfirmationPage = {
     cy.url().should("include", url);
   },
 
-  checkElement(element) {
-    cy.get(OrderConfirmationElements.paymentMethods.checkoutTicket[element], {
+  checkElement(element, cho) {
+    let path = OrderConfirmationElements.paymentMethods[cho];
+
+    cy.get(path[element], {
       force: true,
     }).should("be.visible");
   },
