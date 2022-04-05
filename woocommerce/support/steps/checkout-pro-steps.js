@@ -1,14 +1,37 @@
-import {StorePage} from '../pageObjects/store/store-page'
-import {CheckoutPage} from '../pageObjects/checkout/checkout-page'
-import {CheckoutProPage} from '../pageObjects/checkout/pro-page'
-import {StoreOrderPage} from '../pageObjects/store/order-page'
-import {StoreLoginPage} from '../pageObjects/store/login-page'
-import {MpCheckoutPage} from '../pageObjects/mp/checkout-page'
-import {MpOrderConfirmationPage} from '../pageObjects/mp/order-confirmation-page'
-import {StoreOrderConfirmationPage} from '../pageObjects/store/order-confirmation-page'
+import { StorePage } from '../pageObjects/store/store-page'
+import { CheckoutPage } from '../pageObjects/checkout/checkout-page'
+import { CheckoutProPage } from '../pageObjects/checkout/pro-page'
+import { StoreOrderPage } from '../pageObjects/store/order-page'
+import { StoreLoginPage } from '../pageObjects/store/login-page'
+import { MpCheckoutPage } from '../pageObjects/mp/checkout-page'
+import { MpOrderConfirmationPage } from '../pageObjects/mp/order-confirmation-page'
+import { StoreOrderConfirmationPage } from '../pageObjects/store/order-confirmation-page'
+import { StorePluginPage } from "./../pageObjects/store/plugin-page";
+import { ConfigurationPage } from "./../pageObjects/store/configuration-page";
 
+var site;
 
-//*Scenario: Realizando um pagamento com sucesso com um meio Off
+Given("a loja esteja configurada com o site {word} para testes de pro", (id) => {
+  site = id;
+  StorePluginPage.accessPluginPage();
+  StoreLoginPage.doLoginIfNecessary();
+  StorePluginPage.createIntegration(site);
+});
+
+And("esteja em modo {word}", (mode) => {
+  StorePluginPage.changeStoreMode(mode);
+});
+
+Then("o idioma deve ser configurado para {string}", (language) => {
+  ConfigurationPage.accessConfigurationPage("wordpress");
+  ConfigurationPage.setStoreLanguage(language);
+});
+
+And("a moeda de operação da loja deve ser {string}", (currency) => {
+  ConfigurationPage.accessConfigurationPage("woocommerce");
+  ConfigurationPage.setStoreCurrency(currency);
+});
+
 Given("que eu tenha um produto no carrinho", () => {
     StorePage.accessStore();
     StorePage.addFirstProductOnCart();
@@ -20,7 +43,7 @@ And("que eu esteja na página de checkout", () => {
 })
 
 And("preenchi corretamente os detalhes de faturamento", () => {
-    CheckoutPage.fillPersonalData('mlb');
+    CheckoutPage.fillPersonalData(site);
 })
 
 And("que cliquei na opção de pagamento com o checkout PRO", () => {
@@ -64,7 +87,7 @@ And("que eu esteja na página de checkout", () => {
 })
 
 And("preenchi corretamente os detalhes de faturamento", () => {
-    CheckoutPage.fillPersonalData('mlb');
+    CheckoutPage.fillPersonalData(site);
 })
 
 And("que cliquei na opção de pagamento com o checkout PRO", () => {
@@ -81,9 +104,9 @@ Then("devo ser redirecionado para o Mercado Pago", () => {
 
 And("deve concluir o fluxo de pagamento com cartão", () => {
     MpCheckoutPage.selectPaymentMethod('creditCard');
-    MpCheckoutPage.fillCardData('APRO APRO', 'mlb');
+    MpCheckoutPage.fillCardData('APRO APRO', site);
     MpCheckoutPage.nextPage();
-    MpCheckoutPage.fillInputDocument('mlb');
+    MpCheckoutPage.fillInputDocument(site);
     MpCheckoutPage.nextPage();
     MpCheckoutPage.selectInstallments();
     MpCheckoutPage.pay()
@@ -109,7 +132,7 @@ And("que eu esteja na página de checkout", () => {
 })
 
 And("preenchi corretamente os detalhes de faturamento", () => {
-    CheckoutPage.fillPersonalData('mlb');
+    CheckoutPage.fillPersonalData(site);
 })
 
 And("que cliquei na opção de pagamento com o checkout PRO", () => {
@@ -126,9 +149,9 @@ Then("devo ser redirecionado para o Mercado Pago", () => {
 
 And("deve falhar o fluxo de pagamento com cartão", () => {
     MpCheckoutPage.selectPaymentMethod('creditCard');
-    MpCheckoutPage.fillCardData('OTHE OTHE', 'mlb');
+    MpCheckoutPage.fillCardData('OTHE OTHE', site);
     MpCheckoutPage.nextPage();
-    MpCheckoutPage.fillInputDocument('mlb');
+    MpCheckoutPage.fillInputDocument(site);
     MpCheckoutPage.nextPage();
     MpCheckoutPage.selectInstallments();
     MpCheckoutPage.pay()
@@ -155,7 +178,7 @@ And("que eu esteja na página de checkout", () => {
 })
 
 And("preenchi corretamente os detalhes de faturamento", () => {
-    CheckoutPage.fillPersonalData('mlb');
+    CheckoutPage.fillPersonalData(site);
 })
 
 And("que cliquei na opção de pagamento com o checkout PRO", () => {
@@ -174,9 +197,9 @@ And("deve concluir o fluxo de pagamento com saldo em conta", () => {
     MpCheckoutPage.selectPaymentMethod('accountMoney');
     //TODO: See how to handle with multi-tabs / multi-windows
     //? is possible? https://docs.cypress.io/guides/references/trade-offs#Multiple-tabs
-    // MpCheckoutPage.fillEmailInput('mlb');
+    // MpCheckoutPage.fillEmailInput(site);
     // MpCheckoutPage.nextPage();
-    // MpCheckoutPage.fillPasswordInput('mlb');
+    // MpCheckoutPage.fillPasswordInput(site);
     // MpCheckoutPage.doLogin();
     // MpCheckoutPage.pay();
 })
