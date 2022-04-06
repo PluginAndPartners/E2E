@@ -22,12 +22,18 @@ export const CheckoutElements = {
       documentInput: "[data-checkout=docNumber]",
       cardNumberDiv: "#form-checkout__cardNumber-container",
       cvvDigitsInformation: "#mp-security-code-info",
+      walletButtonContainer:
+        "#payment > ul > li.wc_payment_method.payment_method_woo-mercado-pago-custom > div > div.mp-checkout-custom-container > div.mp-wallet-button-container",
+      walletButton: "#mp-wallet-button",
+      walletButtonIframe: "#mercadopago-checkout",
+      installmentsRadio: "[data-cy=input-radio]",
+      taxCft: "	#mp-checkout-custom-box-input-tax-cft",
     },
     checkoutPro: {
-        radio: '#payment_method_woo-mercado-pago-basic',
+      radio: "#payment_method_woo-mercado-pago-basic",
     },
     checkoutPix: {
-        radio: '#payment_method_woo-mercado-pago-pix',
+      radio: "#payment_method_woo-mercado-pago-pix",
     },
     checkoutTicket: {
       radio: "#payment_method_woo-mercado-pago-ticket",
