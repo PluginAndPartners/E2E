@@ -44,7 +44,7 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
 		And deve ser exibido o campo de documento
 		And deve ser exibido o campo de seleção de parcelas
 		When eu preencher corretamente os campos de cvv, documento e parcela
-		And preencher o nome do titular com 'CALL CALL'
+		And preencher o nome do titular com 'OTHE OTHE'
 		And clicar em finalizar pedido
 		Then devo visualizar na tela uma mensagem de pedido recusado com um link para tentar novamente
 
@@ -52,18 +52,15 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
 		Given scenario Realizando um pagamento sem sucesso
 		When eu clicar no link tente novamente
 		Then devo ser redirecionado para a tela de retentativa de pagamento
-		When eu que preenchi corretamente os detalhes de faturamento
-		And que cliquei na opção de pagamento com o checkout custom
-		And preencher corretamente o número do cartão
+		When eu preencher corretamente o número do cartão
 		Then a bandeira do cartão deve ser exibida no campo do número do cartão
 		And o campo de código de segurança deve exibir logo abaixo uma mensagem com a quantidade e posição dos dígitos daquele cvv no cartão
 		And deve ser exibido o campo de documento
 		And deve ser exibido o campo de seleção de parcelas
 		When eu preencher corretamente os campos de cvv, documento e parcela
-		And preencher o nome do titular com APRO APRO
+		And preencher o nome do titular com 'APRO APRO'
 		And clicar em finalizar pedido
 		Then eu devo ser redirecionado para a tela de pedido recebido
-		And na página do pedido eu devo visualizar o status de pagamento aprovado
 
 	Scenario: Realizar um pagamento com sucesso via wallet button
 		Given que eu tenha um produto no carrinho

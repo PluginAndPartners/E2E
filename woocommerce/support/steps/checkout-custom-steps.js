@@ -124,3 +124,73 @@ And("deve ser exibido o texto para {string}", (text) => {
   CheckoutCustomPage.selectInstallment();
   CheckoutCustomPage.checkElement("taxCft", "checkoutCustom");
 });
+
+//* Scenario: Realizar um pagamento com sucesso pela retentativa de pagamento
+Given("scenario Realizando um pagamento sem sucesso", () => {
+  StorePage.accessStore();
+  StorePage.addFirstProductOnCart();
+  StorePage.accessCart();
+  StorePage.accessCheckout();
+  CheckoutPage.fillPersonalData(site);
+  CheckoutCustomPage.selectPaymentMethod();
+  CheckoutCustomPage.fillCardNumber(site);
+  CheckoutCustomPage.isThumbnailCard();
+  CheckoutCustomPage.cvvDigitsInformation(site);
+  CheckoutCustomPage.isDocumentInput();
+  CheckoutCustomPage.isInstallments();
+  CheckoutCustomPage.fillCardHolderName('OTHE OTHE', site);
+  CheckoutCustomPage.fillExpirationDate(site);
+  CheckoutCustomPage.fillCvv(site);
+  CheckoutCustomPage.fillDocument(site);
+  CheckoutCustomPage.fillInstallments(site);
+  CheckoutPage.finishCheckout();
+  StoreOrderConfirmationPage.checkElement("errorAlert", "checkoutCustom");
+});
+
+When("eu clicar no link tente novamente", () => {
+  StoreOrderConfirmationPage.tryAgain();
+});
+
+Then("devo ser redirecionado para a tela de retentativa de pagamento", () => {
+  cy.url().should('include', 'pay_for_order');
+  cy.wait(3000)
+});
+
+And("eu preencher corretamente o número do cartão", () => {
+  CheckoutCustomPage.fillCardNumber(site);
+});
+
+Then("a bandeira do cartão deve ser exibida no campo do número do cartão", () => {
+  CheckoutCustomPage.isThumbnailCard();
+});
+
+And("o campo de código de segurança deve exibir logo abaixo uma mensagem com a quantidade e posição dos dígitos daquele cvv no cartão", () => {
+  CheckoutCustomPage.cvvDigitsInformation(site);
+});
+
+And("deve ser exibido o campo de documento", () => {
+  CheckoutCustomPage.isDocumentInput();
+});
+
+And("deve ser exibido o campo de seleção de parcelas", () => {
+  CheckoutCustomPage.isInstallments();
+});
+
+When("eu preencher corretamente os campos de cvv, documento e parcela", () => {
+  CheckoutCustomPage.fillExpirationDate(site);
+  CheckoutCustomPage.fillCvv(site);
+  CheckoutCustomPage.fillDocument(site);
+  CheckoutCustomPage.fillInstallments(site);
+});
+
+And("preencher o nome do titular com {string}", (name) => {
+  CheckoutCustomPage.fillCardHolderName(name, site);
+});
+
+And("clicar em finalizar pedido", () => {
+  CheckoutPage.finishCheckout();
+});
+
+Then("eu devo ser redirecionado para a tela de pedido recebido", () => {
+  cy.url().should('include', '/order-received');
+});
