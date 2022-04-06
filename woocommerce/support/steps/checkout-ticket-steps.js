@@ -88,7 +88,7 @@ Then("devo ser direcionado para a tela de pedido recebido", () => {
 });
 
 And("devo visualizar uma seção com a guia de pagamento em formato PDF", () => {
-  StoreOrderConfirmationPage.checkElement("iframe");
+  StoreOrderConfirmationPage.checkElement("iframe", "checkoutTicket");
   StoreOrderConfirmationPage.checkIframe();
 });
 

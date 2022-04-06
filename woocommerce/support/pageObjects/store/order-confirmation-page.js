@@ -6,15 +6,31 @@ export const StoreOrderConfirmationPage = {
     cy.url().should("include", url);
   },
 
-  checkElement(element) {
-    cy.get(OrderConfirmationElements.paymentMethods.checkoutTicket[element], {
+  checkElement(element, cho) {
+    let path = OrderConfirmationElements.paymentMethods[cho];
+
+    cy.get(path[element], {
       force: true,
     }).should("be.visible");
   },
 
   checkIframe() {
-    IframePage.getIframeElementName(OrderConfirmationElements.paymentMethods.checkoutTicket.iframe, OrderConfirmationElements.paymentMethods.checkoutTicket.iframeErrorMessage).should(
-      "not.exist"
+    IframePage.getIframeElementName(
+      OrderConfirmationElements.paymentMethods.checkoutTicket.iframe,
+      OrderConfirmationElements.paymentMethods.checkoutTicket.iframeErrorMessage
+    ).should("not.exist");
+  },
+
+  errorPaymentMessage(message) {
+    cy.get(OrderElements.errorPaymentMessage, { force: true }).should(
+      "be.visible"
     );
+    cy.get(OrderElements.errorPaymentMessage, { force: true }).contains(
+      message
+    );
+  },
+
+  espera() {
+    cy.pause();
   },
 };
