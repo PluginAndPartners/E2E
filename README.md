@@ -80,15 +80,13 @@ We use Cypress.env to handle fixtures that have sensitive data (like credit card
       "cnpj": "some doc number"
     },
     "cards": {
-      "amex": {
-        "number": "credit card number",
-        "expirationDate": "00/00",
-        "cvv": "0000"
-      },
       "master": {
         "number": "credit card number",
         "expirationDate": "00/00",
-        "cvv": "000"
+        "cvv": "000",
+        "digits": "3",
+        "side": "verso",
+        "issuer": "Mastercard"
       }
     }
   },

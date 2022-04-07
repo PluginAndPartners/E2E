@@ -14,6 +14,10 @@ export const StoreOrderConfirmationPage = {
     }).should("be.visible");
   },
 
+  tryAgain(){
+    cy.get("#post-9 > div.entry-content > div > div.woocommerce-notices-wrapper > ul > li > p:nth-child(2) > a").click({ force: true });
+  },
+
   checkIframe() {
     IframePage.getIframeElementName(
       OrderConfirmationElements.paymentMethods.checkoutTicket.iframe,
