@@ -1,0 +1,9 @@
+{
+  "mla": ["Pago Fácil", "Rapipago"],
+  "mlb": ["Boleto", "Pagamento na lotérica sem boleto"],
+  "mlc": ["Redcompra Webpay"],
+  "mco": ["Baloto", "Efecty"],
+  "mlm": ["Citibanamex", "BBVA Bancomer", "OXXO", "Santander", "7 Eleven", "Circle K", "Soriana", "Extra", "Calimax"],
+  "mpe": ["BCP, BBVA Continental u otros"],
+  "mlu": ["Abitab", "Redpagos"]
+}
