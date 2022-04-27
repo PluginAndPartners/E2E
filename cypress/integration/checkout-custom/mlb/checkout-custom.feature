@@ -72,3 +72,82 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
 		When eu preencher corretamente os campos do wallet button
 		And clicar em pagar
 		Then deve ser exibido que o pagamento foi realizado com sucesso
+
+	Scenario: Validar campo de número do cartão com um cartão inválido
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		When preencher o campo de 'cardNumber' com '2132 1534 5634'
+		Then uma mensagem de erro deve ser exibida
+
+	Scenario: Validar campo de número do cartão com caracteres especiais
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		When preencher o campo de 'cardNumber' com 'ABC*-/+'
+		Then o campo 'cardNumber' deve continuar vazio
+
+	Scenario: Validar campo de data de vencimento com caracteres especiais
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		When preencher o campo de 'expirationDate' com 'ABC*-/+'
+		Then o campo 'expirationDate' deve continuar vazio
+
+	Scenario: Validar campo de cvv com caracteres especiais
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		When preencher o campo de 'securityCode' com 'ABC*-/+'
+		Then o campo 'securityCode' deve continuar vazio
+
+	Scenario: Submit do formulário com os campos vazios
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		When eu clicar no botão submit
+		Then uma mensagem de erro deve ser exibida
+
+	Scenario: Submit com cvv de length inválido
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		And preenchi corretamente de todos os campos exceto o campo de 'securityCode'
+		And que o campo de 'securityCode' tenha sido preenchido com '123'
+		When eu clicar no botão submit
+		Then uma mensagem de erro deve ser exibida
+
+	Scenario: Submit com mês de vencimento inválido
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		And preenchi corretamente de todos os campos exceto o campo de 'expirationDate'
+		And que o campo de 'expirationDate' tenha sido preenchido com '52/23'
+		When eu clicar no botão submit
+		Then uma mensagem de erro deve ser exibida
+
+	Scenario: Submit com ano de vencimento inválido
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		And preenchi corretamente de todos os campos exceto o campo de 'expirationDate'
+		And que o campo de 'expirationDate' tenha sido preenchido com '12/98'
+		When eu clicar no botão submit
+		Then uma mensagem de erro deve ser exibida
+
+	Scenario: Submit com installments sem preencher
+		Given que eu tenha um produto no carrinho
+		And que eu esteja na página de checkout
+		And que preenchi corretamente os detalhes de faturamento
+		And que cliquei na opção de pagamento com o checkout custom
+		And preenchi corretamente de todos os campos exceto o campo de 'installments'
+		When eu clicar no botão submit
+		Then uma mensagem de erro deve ser exibida

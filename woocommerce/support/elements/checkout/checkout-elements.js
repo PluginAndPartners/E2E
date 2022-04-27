@@ -13,12 +13,8 @@ export const CheckoutElements = {
   paymentMethods: {
     creditCard: {
       radio: "#payment_method_woo-mercado-pago-custom",
-      numberInput: "#cardNumber",
       nameInput: "#form-checkout__cardholderName",
-      expirationDateInput: "#expirationDate",
-      cvvInput: "#securityCode",
       installmentsSelect: "[data-cy=input-table-list]",
-      firstInstallment: "#installment-1",
       documentInput: "[data-checkout=docNumber]",
       cardNumberDiv: "#form-checkout__cardNumber-container",
       cvvDigitsInformation: "#mp-security-code-info",
@@ -27,7 +23,8 @@ export const CheckoutElements = {
       walletButton: "#mp-wallet-button",
       walletButtonIframe: "#mercadopago-checkout",
       installmentsRadio: "[data-cy=input-radio]",
-      taxCft: "	#mp-checkout-custom-box-input-tax-cft",
+      taxCft: "#mp-checkout-custom-box-input-tax-cft",
+      helperMessage: "[data-cy=helper-message]",
     },
     checkoutPro: {
       radio: "#payment_method_woo-mercado-pago-basic",
