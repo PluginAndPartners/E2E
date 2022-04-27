@@ -7,9 +7,11 @@ import { StorePluginPage } from "./../pageObjects/store/plugin-page";
 import { ConfigurationPage } from "./../pageObjects/store/configuration-page";
 
 var site;
+var envs;
 
 Given("a loja esteja configurada com o site {word} para testes de custom", (siteId) => {
   site = siteId;
+  envs = Cypress.env(site);
   StorePluginPage.accessPluginPage();
   StoreLoginPage.doLoginIfNecessary();
   StorePluginPage.createIntegration(site);
@@ -53,7 +55,7 @@ And("que cliquei na opção de pagamento com o checkout custom", () => {
 });
 
 When("eu preencher corretamente o número do cartão", () => {
-  CheckoutCustomPage.fillCardNumber(site);
+  CheckoutCustomPage.fillIframeElement("cardNumber", envs.cards.amex.number);
 });
 
 Then("a bandeira do cartão deve ser exibida no campo do número do cartão", () => {
@@ -65,22 +67,28 @@ And("o campo de código de segurança deve exibir logo abaixo uma mensagem com a
 });
 
 And("deve ser exibido o campo de documento", () => {
-  CheckoutCustomPage.isDocumentInput();
+  CheckoutCustomPage.checkElement("documentInput");
 });
 
 And("deve ser exibido o campo de seleção de parcelas", () => {
-  CheckoutCustomPage.isInstallments();
+  CheckoutCustomPage.checkElement("installmentsSelect");
 });
 
 And("preencher o nome do titular com {string}", (name) => {
-  CheckoutCustomPage.fillCardHolderName(name, site);
+  CheckoutCustomPage.fillElement("nameInput", name);
 });
 
 When("eu preencher corretamente os campos de cvv, documento e parcela", () => {
-  CheckoutCustomPage.fillExpirationDate(site);
-  CheckoutCustomPage.fillCvv(site);
-  CheckoutCustomPage.fillDocument(site);
-  CheckoutCustomPage.fillInstallments(site);
+  CheckoutCustomPage.fillIframeElement(
+    "expirationDate",
+    envs.cards.amex.expirationDate
+  );
+  CheckoutCustomPage.fillIframeElement("securityCode", envs.cards.amex.cvv);
+  CheckoutCustomPage.fillElement(
+    "documentInput",
+    Object.values(envs.document)[0]
+  );
+  CheckoutCustomPage.selectInstallment();
 });
 
 And("clicar em finalizar pedido", () => {
@@ -92,7 +100,7 @@ Then("deve ser exibido que o pagamento foi realizado com sucesso", () => {
 });
 
 And("eu preencher corretamente o número do cartão", () => {
-  CheckoutCustomPage.fillCardNumber(site);
+  CheckoutCustomPage.fillIframeElement("cardNumber", envs.cards.amex.number);
 });
 
 Then("devo visualizar na tela uma mensagem de pedido recusado com um link para tentar novamente", () => {
@@ -100,12 +108,12 @@ Then("devo visualizar na tela uma mensagem de pedido recusado com um link para t
 });
 
 And("clicar em pagar com mercado pago", () => {
-  CheckoutCustomPage.checkElement("walletButtonContainer", "checkoutCustom");
+  CheckoutCustomPage.checkElement("walletButtonContainer");
   CheckoutCustomPage.clickWalletButton();
 });
 
 Then("devo visualizar um modal do mercado pago", () => {
-  CheckoutCustomPage.checkElement("walletButtonIframe", "checkoutCustom");
+  CheckoutCustomPage.checkElement("walletButtonIframe");
 });
 
 When("eu preencher corretamente os campos do wallet button", () => {
@@ -122,7 +130,7 @@ And("clicar em pagar", () => {
 
 And("deve ser exibido o texto para {string}", (text) => {
   CheckoutCustomPage.selectInstallment();
-  CheckoutCustomPage.checkElement("taxCft", "checkoutCustom");
+  CheckoutCustomPage.checkElement("taxCft");
 });
 
 //* Scenario: Realizar um pagamento com sucesso pela retentativa de pagamento
@@ -133,16 +141,22 @@ Given("scenario Realizando um pagamento sem sucesso", () => {
   StorePage.accessCheckout();
   CheckoutPage.fillPersonalData(site);
   CheckoutCustomPage.selectPaymentMethod();
-  CheckoutCustomPage.fillCardNumber(site);
+  CheckoutCustomPage.fillIframeElement("cardNumber", envs.cards.amex.number);
   CheckoutCustomPage.isThumbnailCard();
   CheckoutCustomPage.cvvDigitsInformation(site);
-  CheckoutCustomPage.isDocumentInput();
-  CheckoutCustomPage.isInstallments();
-  CheckoutCustomPage.fillCardHolderName('OTHE OTHE', site);
-  CheckoutCustomPage.fillExpirationDate(site);
-  CheckoutCustomPage.fillCvv(site);
-  CheckoutCustomPage.fillDocument(site);
-  CheckoutCustomPage.fillInstallments(site);
+  CheckoutCustomPage.checkElement("documentInput");
+  CheckoutCustomPage.checkElement("installmentsSelect");
+  CheckoutCustomPage.fillElement("nameInput", "OTHE OTHE");
+  CheckoutCustomPage.fillIframeElement(
+    "expirationDate",
+    envs.cards.amex.expirationDate
+  );
+  CheckoutCustomPage.fillIframeElement("securityCode", envs.cards.amex.cvv);
+  CheckoutCustomPage.fillElement(
+    "documentInput",
+    Object.values(envs.document)[0]
+  );
+  CheckoutCustomPage.selectInstallment();
   CheckoutPage.finishCheckout();
   StoreOrderConfirmationPage.checkElement("errorAlert", "checkoutCustom");
 });
@@ -152,12 +166,12 @@ When("eu clicar no link tente novamente", () => {
 });
 
 Then("devo ser redirecionado para a tela de retentativa de pagamento", () => {
-  cy.url().should('include', 'pay_for_order');
-  cy.wait(3000)
+  cy.url().should("include", "pay_for_order");
+  cy.wait(3000);
 });
 
 And("eu preencher corretamente o número do cartão", () => {
-  CheckoutCustomPage.fillCardNumber(site);
+  CheckoutCustomPage.fillIframeElement("cardNumber", envs.cards.amex.number);
 });
 
 Then("a bandeira do cartão deve ser exibida no campo do número do cartão", () => {
@@ -169,22 +183,28 @@ And("o campo de código de segurança deve exibir logo abaixo uma mensagem com a
 });
 
 And("deve ser exibido o campo de documento", () => {
-  CheckoutCustomPage.isDocumentInput();
+  CheckoutCustomPage.checkElement("documentInput");
 });
 
 And("deve ser exibido o campo de seleção de parcelas", () => {
-  CheckoutCustomPage.isInstallments();
+  CheckoutCustomPage.checkElement("installmentsSelect");
 });
 
 When("eu preencher corretamente os campos de cvv, documento e parcela", () => {
-  CheckoutCustomPage.fillExpirationDate(site);
-  CheckoutCustomPage.fillCvv(site);
-  CheckoutCustomPage.fillDocument(site);
-  CheckoutCustomPage.fillInstallments(site);
+  CheckoutCustomPage.fillIframeElement(
+    "expirationDate",
+    envs.cards.amex.expirationDate
+  );
+  CheckoutCustomPage.fillIframeElement("securityCode", envs.cards.amex.cvv);
+  CheckoutCustomPage.fillElement(
+    "documentInput",
+    Object.values(envs.document)[0]
+  );
+  CheckoutCustomPage.selectInstallment();
 });
 
 And("preencher o nome do titular com {string}", (name) => {
-  CheckoutCustomPage.fillCardHolderName(name, site);
+  CheckoutCustomPage.fillElement("nameInput", name);
 });
 
 And("clicar em finalizar pedido", () => {
@@ -192,5 +212,45 @@ And("clicar em finalizar pedido", () => {
 });
 
 Then("eu devo ser redirecionado para a tela de pedido recebido", () => {
-  cy.url().should('include', '/order-received');
+  StoreOrderConfirmationPage.validateUrl("/order-received");
+});
+
+When("preencher o campo de {string} com {string}", (field, value) => {
+  CheckoutCustomPage.fillIframeElement(field, value);
+});
+
+Then("uma mensagem de erro deve ser exibida", () => {
+  CheckoutCustomPage.checkElement("helperMessage");
+});
+
+When("eu clicar no botão submit", () => {
+  CheckoutPage.finishCheckout();
+});
+
+Then("o campo {string} deve continuar vazio", (field) => {
+  CheckoutCustomPage.isEmptyIframeField(field);
+});
+
+And("preenchi corretamente de todos os campos exceto o campo de {string}", (field) => {
+  CheckoutCustomPage.fillIframeElement("cardNumber", envs.cards.amex.number);
+  CheckoutCustomPage.fillElement("nameInput", "APRO APRO");
+  CheckoutCustomPage.fillElement(
+    "documentInput",
+    Object.values(envs.document)[0]
+  );
+
+  if (field != "expirationDate")
+    CheckoutCustomPage.fillIframeElement(
+      "expirationDate",
+      envs.cards.amex.expirationDate
+    );
+
+  if (field != "securityCode")
+    CheckoutCustomPage.fillIframeElement("securityCode", envs.cards.amex.cvv);
+
+  if (field != "installments") CheckoutCustomPage.selectInstallment();
+});
+
+And("que o campo de {string} tenha sido preenchido com {string}", (field, value) => {
+  CheckoutCustomPage.fillIframeElement(field, value);
 });

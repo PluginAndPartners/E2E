@@ -1,9 +1,8 @@
-import { CheckoutElements } from "../../elements/checkout/checkout-elements";
+import { CheckoutElements } from "./../../elements/checkout/checkout-elements";
 import { IframePage } from "./iframe-page";
 
 export const CheckoutCustomPage = {
   selectPaymentMethod() {
-    cy.debug();
     cy.get(CheckoutElements.paymentMethods.creditCard.radio).click({
       force: true,
     });
@@ -11,6 +10,12 @@ export const CheckoutCustomPage = {
 
   checkElement(element) {
     cy.get(CheckoutElements.paymentMethods.creditCard[element], {
+      force: true,
+    }).should("be.visible");
+  },
+
+  checkIframeElement(parent, child) {
+    IframePage.getIframeElementName(parent, child, {
       force: true,
     }).should("be.visible");
   },
@@ -26,69 +31,10 @@ export const CheckoutCustomPage = {
     const envs = Cypress.env(site);
     cy.get(
       CheckoutElements.paymentMethods.creditCard.cvvDigitsInformation
-    ).contains(envs.cards.master.digits);
+    ).contains(envs.cards.amex.digits);
     cy.get(
       CheckoutElements.paymentMethods.creditCard.cvvDigitsInformation
-    ).contains(envs.cards.master.side);
-  },
-
-  isDocumentInput() {
-    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput, {
-      force: true,
-    }).should("be.visible");
-  },
-
-  isInstallments() {
-    cy.get(CheckoutElements.paymentMethods.creditCard.installmentsSelect, {
-      force: true,
-    }).should("be.visible");
-  },
-
-  fillCardNumber(site) {
-    const envs = Cypress.env(site);
-    IframePage.getIframeElementName(
-      "iframe[name=cardNumber]",
-      "#cardNumber"
-    ).type(envs.cards.master.number, { force: true });
-  },
-
-  fillCvv(site) {
-    const envs = Cypress.env(site);
-    IframePage.getIframeElementName(
-      "iframe[name=securityCode]",
-      "#securityCode"
-    ).type(envs.cards.master.cvv, { force: true });
-  },
-
-  fillExpirationDate(site) {
-    const envs = Cypress.env(site);
-    IframePage.getIframeElementName(
-      "iframe[name=expirationDate]",
-      "#expirationDate"
-    ).type(envs.cards.master.expirationDate, { force: true });
-  },
-
-  fillCardHolderName(cardFullName) {
-    cy.wait(1000);
-    cy.get(CheckoutElements.paymentMethods.creditCard.nameInput).type(
-      cardFullName,
-      { force: true }
-    );
-  },
-
-  fillInstallments(site) {
-    const envs = Cypress.env(site);
-    cy.get(CheckoutElements.paymentMethods.creditCard.firstInstallment).click({
-      force: true,
-    });
-  },
-
-  fillDocument(site) {
-    const envs = Cypress.env(site);
-    cy.get(CheckoutElements.paymentMethods.creditCard.documentInput).type(
-      envs.document.cpf,
-      { force: true }
-    );
+    ).contains(envs.cards.amex.side);
   },
 
   clickWalletButton() {
@@ -106,25 +52,22 @@ export const CheckoutCustomPage = {
       "#button_popup > span"
     ).click({ force: true });
 
-    IframePage.getIframeElementName(
+    this.fillIframeElement(
       CheckoutElements.paymentMethods.creditCard.walletButtonIframe,
-      "#user_id"
-    ).type(envs.user.email, { force: true });
-
-    IframePage.getIframeElementName(
-      CheckoutElements.paymentMethods.creditCard.walletButtonIframe,
-      "#user_id"
-    ).type(envs.user.email, { force: true });
+      "#user_id",
+      envs.user.email
+    );
 
     IframePage.getIframeElementName(
       CheckoutElements.paymentMethods.creditCard.walletButtonIframe,
       "#login_user_form > div.login-form__actions > button > span"
     ).click({ force: true });
 
-    IframePage.getIframeElementName(
+    this.fillIframeElement(
       CheckoutElements.paymentMethods.creditCard.walletButtonIframe,
-      "#password"
-    ).type(envs.user.password, { force: true });
+      "#password",
+      envs.user.password
+    );
 
     IframePage.getIframeElementName(
       CheckoutElements.paymentMethods.creditCard.walletButtonIframe,
@@ -150,5 +93,24 @@ export const CheckoutCustomPage = {
     cy.get(CheckoutElements.paymentMethods.creditCard.installmentsRadio)
       .eq(1)
       .check({ force: true });
+  },
+
+  fillIframeElement(field, value) {
+    cy.wait(2000);
+    IframePage.getIframeElementName(`iframe[name=${field}]`, `#${field}`).type(
+      value,
+      { force: true }
+    );
+  },
+
+  fillElement(field, value) {
+    cy.get(CheckoutElements.paymentMethods.creditCard[field]).type(value);
+  },
+
+  isEmptyIframeField(field) {
+    IframePage.getIframeElementName(
+      `iframe[name=${field}]`,
+      `#${field}`
+    ).should("have.value", "");
   },
 };
