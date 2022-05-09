@@ -52,6 +52,7 @@ And("que preenchi corretamente os detalhes de faturamento", () => {
 
 And("que cliquei na opção de pagamento com o checkout custom", () => {
   CheckoutCustomPage.selectPaymentMethod();
+  cy.wait(2000)
 });
 
 When("eu preencher corretamente o número do cartão", () => {
@@ -212,6 +213,7 @@ And("clicar em finalizar pedido", () => {
 });
 
 Then("eu devo ser redirecionado para a tela de pedido recebido", () => {
+  cy.wait(10000);
   StoreOrderConfirmationPage.validateUrl("/order-received");
 });
 

@@ -96,7 +96,7 @@ export const CheckoutCustomPage = {
   },
 
   fillIframeElement(field, value) {
-    cy.wait(2000);
+    cy.wait(4000);
     IframePage.getIframeElementName(`iframe[name=${field}]`, `#${field}`).type(
       value,
       { force: true }
@@ -104,6 +104,7 @@ export const CheckoutCustomPage = {
   },
 
   fillElement(field, value) {
+    cy.wait(2000);
     cy.get(CheckoutElements.paymentMethods.creditCard[field]).type(value);
   },
 

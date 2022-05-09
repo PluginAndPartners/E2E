@@ -18,7 +18,7 @@ export const CheckoutPage = {
   },
 
   finishCheckout() {
-    cy.get(CheckoutElements.finishButton, { setTimeout: 4000 }).click();
+    cy.get(CheckoutElements.finishButton, { setTimeout: 5000 }).click();
     cy.on("uncaught:exception", () => false);
   },
 };
