@@ -139,7 +139,7 @@ Feature: Disponibilizar ao buyer o pagamento de sua compra através do Checkout 
 		And que preenchi corretamente os detalhes de faturamento
 		And que cliquei na opção de pagamento com o checkout custom
 		And preenchi corretamente de todos os campos exceto o campo de 'expirationDate'
-		And que o campo de 'expirationDate' tenha sido preenchido com '12/98'
+		And que o campo de 'expirationDate' tenha sido preenchido com '12/18'
 		When eu clicar no botão submit
 		Then uma mensagem de erro deve ser exibida
 
